@@ -1,0 +1,12 @@
+{
+  "name": "mostly-adequate-guide",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:wayneseymour/mostly-adequate-guide.git",
+  "author": "Wayne Kenneth Seymour III <WayneSeymour@iheartmedia.com>",
+  "license": "MIT",
+  "dependencies": {
+    "accounting": "^0.4.1",
+    "ramda": "^0.25.0"
+  }
+}
