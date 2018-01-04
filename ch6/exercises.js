@@ -65,3 +65,9 @@ var averageDollarValue = function(cars) {
   }, cars);
   return _average(dollar_values);
 };
+
+var averageDollarValue2 = _.compose(_average, _.map(_.prop('dollar_value')))
+
+console.log(averageDollarValue(CARS))
+console.log(averageDollarValue2(CARS))
+
