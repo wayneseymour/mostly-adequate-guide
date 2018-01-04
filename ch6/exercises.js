@@ -108,5 +108,21 @@ var availablePrices2 = _.compose(
   _.map(_.prop('dollar_value')), 
   _.filter(_.prop('in_stock'))
 )
-console.log(availablePrices(CARS))
-console.log(availablePrices2(CARS))
+// console.log(availablePrices(CARS))
+// console.log(availablePrices2(CARS))
+
+// Bonus 2:
+// ============
+// Refactor to pointfree. Hint: you can use _.flip().
+
+var fastestCar = function(cars) {
+  var sorted = _.sortBy(function(car) {
+    return car.horsepower;
+  }, cars);
+  var fastest = _.last(sorted);
+  return fastest.name + ' is the fastest';
+};
+var fastestCar2 = _.compose(x => x + ' is the fastest', _.prop('name'), _.last, _.sortBy(_.prop('horsepower')))
+
+console.log(fastestCar(CARS))
+console.log(fastestCar2(CARS))
