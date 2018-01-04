@@ -82,4 +82,31 @@ var averageDollarValue2 = _.compose(_average, _.map(_.prop('dollar_value')))
 var _underscore = _.replace(/\W+/g, '_'); //<-- leave this alone and use to sanitize
 
 var sanitizeNames = _.compose(_.map(_.toLower), _.map(_underscore), _.map(_.prop('name')))
-console.log(sanitizeNames(CARS))
+// console.log(sanitizeNames(CARS))
+
+// Bonus 1:
+// ============
+// Refactor availablePrices with compose.
+
+var availablePrices = function(cars) {
+  var available_cars = _.filter(_.prop('in_stock'), cars);
+  return available_cars.map(function(x) {
+    return accounting.formatMoney(x.dollar_value);
+  }).join(', ');
+};
+var id = function (x) {
+  return x;
+}
+/*
+1. filter(_.prop('in_stock'))
+2. map(accounting.formatMoney(_.prop('dollar_value')))
+3. join
+*/
+var availablePrices2 = _.compose(
+  x => x.join(', '),
+  _.map(accounting.formatMoney),
+  _.map(_.prop('dollar_value')), 
+  _.filter(_.prop('in_stock'))
+)
+console.log(availablePrices(CARS))
+console.log(availablePrices2(CARS))
