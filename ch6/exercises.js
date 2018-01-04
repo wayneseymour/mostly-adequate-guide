@@ -122,6 +122,7 @@ var fastestCar = function(cars) {
   var fastest = _.last(sorted);
   return fastest.name + ' is the fastest';
 };
+// Hrmm...this last fn is NOT pointfree, but too tired.
 var fastestCar2 = _.compose(x => x + ' is the fastest', _.prop('name'), _.last, _.sortBy(_.prop('horsepower')))
 
 console.log(fastestCar(CARS))
